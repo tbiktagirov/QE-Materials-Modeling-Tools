@@ -143,7 +143,7 @@ def main(cutoff, filedyn, fileex):
    plt.plot([0,freq[-1]+10],[cutoff,cutoff],'k--')
    plt.text(1,cutoff,'cutoff')
    plt.xlabel('Frequency, meV')
-   plt.ylabel('Localization/mean')
+   plt.ylabel('Localization/mean, a.u.')
    plt.show()
 
 
