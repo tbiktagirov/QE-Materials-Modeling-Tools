@@ -85,7 +85,7 @@ def getrecip(latvec):
 
 if ( __name__ == "__main__"):
    """
-   An example of usage.
+   An example of usage. 
    """
    alat = 10
    latvec=np.array([[1, 0, 0],[0, 1, 0],[0, 0, 1]]) * alat
