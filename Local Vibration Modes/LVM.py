@@ -65,7 +65,7 @@ class Phonon():
            if n == self.numat:
               self.locparam = np.append(self.locparam,sum(polquad)/sum(polsqr))
               if fileex:
-                 q_i = get_proj(self, polar, fileex)
+                 q_i = self.get_proj(self, polar, fileex)
                  self.proj = np.append(self.proj,q_i)
          strnum += 1
       #self.freq -= self.freq[0] #for gamma point only
@@ -74,42 +74,42 @@ class Phonon():
       return self.freq, self.locparam, self.proj
 
 
-def get_proj(self, polar, fileex):
-   f = open(fileex,'r')
-   strnum = 0
-   n = 0
-   t = 0
-   coor_ex = []
-   for i in f:
-      if ".out" in fileex:
-         if "Begin final coordinates" in i:
-           strnum = 0
-           t = 1
-         if (t == 1) and (strnum > 8) and (n < self.numat):
-           n += 1
-           tmp = [float(i.split()[1]), float(i.split()[2]), float(i.split()[3])]
-           coor_ex = np.append(coor_ex, tmp)
-      if ".xsf" in fileex:
-         if (strnum > 6)  and (n < self.numat):
-           n += 1
-           tmp = [float(i.split()[1]), float(i.split()[2]), float(i.split()[3])]
-           coor_ex = np.append(coor_ex, tmp)
-         if self.numat == n:
-           break
-      if ".xyz" in fileex:
-         if (strnum > 1) and (n < self.numat):
-           n += 1
-           tmp = [float(i.split()[1]), float(i.split()[2]), float(i.split()[3])]
-           coor_ex = np.append(coor_ex, tmp)
-      strnum += 1
-   q_i = 0
-   tmp = coor_ex - self.coor
-   dR = np.reshape(tmp, (self.numat,3))
-   k = 0
-   while k < self.numat:
-      q_i += np.dot(dR[k,:],polar) / (self.mass[k])**(1/2)
-      k += 1
-   return q_i
+   def get_proj(self, polar, fileex):
+      f = open(fileex,'r')
+      strnum = 0
+      n = 0
+      t = 0
+      coor_ex = []
+      for i in f:
+         if ".out" in fileex:
+            if "Begin final coordinates" in i:
+              strnum = 0
+              t = 1
+            if (t == 1) and (strnum > 8) and (n < self.numat):
+              n += 1
+              tmp = [float(i.split()[1]), float(i.split()[2]), float(i.split()[3])]
+              coor_ex = np.append(coor_ex, tmp)
+         if ".xsf" in fileex:
+            if (strnum > 6)  and (n < self.numat):
+              n += 1
+              tmp = [float(i.split()[1]), float(i.split()[2]), float(i.split()[3])]
+              coor_ex = np.append(coor_ex, tmp)
+            if self.numat == n:
+              break
+         if ".xyz" in fileex:
+            if (strnum > 1) and (n < self.numat):
+              n += 1
+              tmp = [float(i.split()[1]), float(i.split()[2]), float(i.split()[3])]
+              coor_ex = np.append(coor_ex, tmp)
+         strnum += 1
+      q_i = 0
+      tmp = coor_ex - self.coor
+      dR = np.reshape(tmp, (self.numat,3))
+      k = 0
+      while k < self.numat:
+         q_i += np.dot(dR[k,:],polar) / (self.mass[k])**(1/2)
+         k += 1
+      return q_i
 
 
 def get_lvm(freq, locparam, cutoff):
@@ -143,7 +143,7 @@ def main(cutoff, filedyn, fileex):
    plt.plot([0,freq[-1]+10],[cutoff,cutoff],'k--')
    plt.text(1,cutoff,'cutoff')
    plt.xlabel('Frequency, meV')
-   plt.ylabel('Localization/mean, a.u.')
+   plt.ylabel('Localization/mean')
    plt.show()
 
 
