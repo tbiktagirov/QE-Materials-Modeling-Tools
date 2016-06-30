@@ -26,7 +26,7 @@ class WfcDat():
       for i in range(1,nbnd+1):
          nodename = "Wfc."+str(i)
          node = xmldoc.getElementsByTagName(nodename)[0]
-         C = getCoef(self, node)
+         C = self.getCoef(self, node)
          print(nodename)
          tmp = np.append(tmp, C)
       self.Coef = tmp.reshape((nbnd,-1)) # [band, index]
@@ -55,7 +55,7 @@ class WfcDat():
       return self.G
 
 
-def getCoef(self, node):
+   def getCoef(self, node):
          nodelist = node.childNodes
          tmp = []
          C = []
