@@ -65,7 +65,7 @@ class Phonon():
            if n == self.numat:
               self.locparam = np.append(self.locparam,sum(polquad)/sum(polsqr))
               if fileex:
-                 q_i = self.get_proj(self, polar, fileex)
+                 q_i = self.get_proj(polar, fileex)
                  self.proj = np.append(self.proj,q_i)
          strnum += 1
       #self.freq -= self.freq[0] #for gamma point only
