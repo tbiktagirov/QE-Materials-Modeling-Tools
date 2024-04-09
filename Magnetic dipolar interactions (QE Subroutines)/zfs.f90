@@ -45,7 +45,6 @@ SUBROUTINE zfs
   write(stdout,*)
 1003 FORMAT(5X,A,F6.1)
 
-
   ! calculate the bare contribution
   write(stdout,'(5X,''Calculating the plane-wave contribution'')')
   call zfs_ss_bare(zfs_bare, zfs_bare_i)
