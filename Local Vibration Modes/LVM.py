@@ -1,6 +1,10 @@
 """
 LVM (T. Biktagirov): 
 Extracts local vibration modes from Quantum Espresso ph.x output.
+For detailed theory, see
+   1. Alkauskas, A.; Buckley, B. B.; Awschalom, D. D.; Van de Walle, C. G. New J. Phys. 2014, 16, 073026. 
+   2. Markham, J. J. Rev. Mod. Phys. 1959, 31, 956.
+   3. von Bardeleben, H.J.; Cantin, J.L.; Gerstmann, U.; Schmidt, W.G.; Biktagirov, T. Nano Lett. 2021, 21, 8119-8125.
 Usage: run LVM cut-off DYNFILE EXCOORFILE(optional)
    cut-off: cut-off value for the localization measure
    DYNFILE: file containing dynamical matrices (dyn.G)
